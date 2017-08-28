@@ -1,0 +1,50 @@
+{
+  "name": "pru-menu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js | bunyan",
+    "lint": "standard",
+    "docs": "apidoc -i ./ -o ./docs",
+    "test": "standard && npm run test:unit && npm run test:acceptance",
+    "test:acceptance": "(npm start > ./acceptance.log) & ava --serial acceptance/**/*.js",
+    "test:acceptance:watch": "(npm start > ./acceptance.log) & ava --serial --watch acceptance/**/*.js",
+    "test:unit": "NODE_ENV=test ava --serial src/api/**/*.test.js",
+    "test:unit:watch": "NODE_ENV=test ava --serial --watch src/api/**/*.test.js",
+  },
+  "apidoc": {
+    "title": "pRU Menu REST API Documentation",
+    "name": "pRU Menu REST API Documentation",
+    "url": "https://pru-menu-brunoluiz.herokuapp.com/v1"
+  },
+  "standard": {
+    "ignore": [
+      "docs/**",
+      "public/**",
+      "yarn/**"
+    ]
+  },
+  "author": "Bruno Luiz da Silva",
+  "license": "ISC",
+  "dependencies": {
+    "apidoc": "^0.17.6",
+    "ava": "^0.21.0",
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.2",
+    "bunyan": "^1.8.12",
+    "change-case": "^3.0.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.4",
+    "joi": "^10.6.0",
+    "joigoose": "^2.0.0",
+    "moment": "^2.18.1",
+    "mongoose": "^4.11.6",
+    "nodemon": "^1.11.0",
+    "proxyquire": "^1.8.0",
+    "randomstring": "^1.1.5",
+    "sinon": "^3.2.0",
+    "standard": "^10.0.3",
+    "supertest": "^3.0.0"
+  }
+}
