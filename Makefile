@@ -16,13 +16,13 @@ rm: stop
 stop:
 	docker-compose stop
 
-.PHONY: acceptance-watch
-acceptance-watch:
-	docker-compose run web npm run test:acceptance:watch
+.PHONY: spec-watch
+spec-watch:
+	docker-compose run web npm run test:spec:watch
 
-.PHONY: acceptance
-acceptance:
-	docker-compose run web npm run test:acceptance
+.PHONY: spec
+spec:
+	docker-compose run web npm run test:spec
 
 .PHONY: unit
 unit:
@@ -49,5 +49,5 @@ logs:
 	docker-compose logs --follow
 
 .PHONY: logs
-logs-acceptance:
-	tail -f acceptance.log
+logs-spec:
+	tail -f spec.log

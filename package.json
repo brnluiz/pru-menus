@@ -7,9 +7,9 @@
     "start": "node app.js | bunyan",
     "lint": "standard",
     "docs": "apidoc -i ./ -o ./docs",
-    "test": "standard && npm run test:unit && npm run test:acceptance",
-    "test:acceptance": "(npm start > ./acceptance.log) & ava --serial acceptance/**/*.js",
-    "test:acceptance:watch": "(npm start > ./acceptance.log) & ava --serial --watch acceptance/**/*.js",
+    "test": "standard && npm run test:unit && npm run test:spec",
+    "test:spec": "(npm start > ./spec.log) & ava --serial spec/**/*.spec.js",
+    "test:spec:watch": "(npm start > ./spec.log) & ava --serial --watch spec/**/*.spec.js",
     "test:unit": "NODE_ENV=test ava --serial src/api/**/*.test.js",
     "test:unit:watch": "NODE_ENV=test ava --serial --watch src/api/**/*.test.js"
   },
