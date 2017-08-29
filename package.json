@@ -11,7 +11,7 @@
     "test:acceptance": "(npm start > ./acceptance.log) & ava --serial acceptance/**/*.js",
     "test:acceptance:watch": "(npm start > ./acceptance.log) & ava --serial --watch acceptance/**/*.js",
     "test:unit": "NODE_ENV=test ava --serial src/api/**/*.test.js",
-    "test:unit:watch": "NODE_ENV=test ava --serial --watch src/api/**/*.test.js",
+    "test:unit:watch": "NODE_ENV=test ava --serial --watch src/api/**/*.test.js"
   },
   "apidoc": {
     "title": "pRU Menu REST API Documentation",
