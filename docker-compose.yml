@@ -2,7 +2,7 @@ version: '2'
 
 services:
   web:
-    image: 'brunoluiz/pru-menu'
+    image: brunoluiz/pru-menu
     env_file: .env.development
     build:
       args:
@@ -10,15 +10,16 @@ services:
       context: .
     volumes:
       - .:/opt/app
+      - /opt/app/node_modules
     ports:
-      - '8080:80'
-      - '9229:9229'
+      - 8080:80
+      - 9229:9229
     links:
-      - 'mongodb:mongodb.host'
-    command: '../node_modules/.bin/nodemon ./app.js --inspect=0.0.0.0:9229'
+      - mongodb:mongodb.host
+    command: ../node_modules/.bin/nodemon ./app.js --inspect=0.0.0.0:9229
 
   mongodb:
-    image: 'mongo:3.4'
+    image: mongo:3.4
     # Port not exposed due to CircleCI
     # ports:
       # - '27017:27016'
