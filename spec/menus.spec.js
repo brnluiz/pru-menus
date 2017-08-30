@@ -18,7 +18,7 @@ test.before(async t => {
 
 test('should get a menu from a location', t =>
   request
-    .get(`/locations/${menu.location.slug}/menus`)
+    .get(`/v1/locations/${menu.location.slug}/menus`)
     .auth(auth.user, auth.pswd)
     .set('Accept', 'application/json')
     .expect(200)
@@ -39,7 +39,7 @@ test('should get a menu from a location', t =>
 
 test('should fail on get a menu from a non-existent location', t =>
   request
-    .get(`/locations/KLAPAUCIUS/menus`)
+    .get(`/v1/locations/KLAPAUCIUS/menus`)
     .auth(auth.user, auth.pswd)
     .set('Accept', 'application/json')
     .expect(404)
@@ -50,7 +50,7 @@ test('should fail on get a menu from a non-existent location', t =>
 
 test('should get a specific menu', t =>
   request
-    .get(`/menus/${menu.id}`)
+    .get(`/v1/menus/${menu.id}`)
     .auth(auth.user, auth.pswd)
     .set('Accept', 'application/json')
     .expect(200)
@@ -69,7 +69,7 @@ test('should get a specific menu', t =>
 
 test('should fail on get a non-existent menu', t =>
   request
-    .get(`/menus/10`)
+    .get(`/v1/menus/10`)
     .auth(auth.user, auth.pswd)
     .set('Accept', 'application/json')
     .expect(404)
@@ -80,7 +80,7 @@ test('should fail on get a non-existent menu', t =>
 
 test('should get a menu from a location on a specific date', t =>
   request
-    .get(`/locations/${menu.location.slug}/menus`)
+    .get(`/v1/locations/${menu.location.slug}/menus`)
     .auth(auth.user, auth.pswd)
     .query({
       date: menu.date
