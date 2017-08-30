@@ -1,7 +1,7 @@
 const router = require('express').Router()
 
 const getController = require('./controllers/menu-get-controller')
-const getByLocationController = require('./controllers/menu-get-by-location-middleware')
+const getByLocationController = require('./controllers/menu-get-by-location-controller')
 
 /**
  * @api {post} /menus Get menu (by id)
