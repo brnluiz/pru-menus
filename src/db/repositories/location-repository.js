@@ -9,6 +9,6 @@ module.exports = {
     return Location.find()
   },
   get (slug) {
-    return Location.find({ slug })
+    return Location.findOne({ slug })
   }
 }
