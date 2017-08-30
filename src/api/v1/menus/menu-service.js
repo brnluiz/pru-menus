@@ -8,7 +8,7 @@ module.exports = {
   async getByLocation (locationSlug, startDate, endDate) {
     const { _id } = await locationRepository.get(locationSlug)
 
-    return menuRepository.get(_id, startDate, endDate)
+    return menuRepository.getByLocation(_id, startDate, endDate)
   },
   async create (menuIn) {
     return menuRepository.create(menuIn)
