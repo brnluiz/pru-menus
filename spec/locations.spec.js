@@ -42,6 +42,9 @@ test('should fail on execute a location collect due to non-existent location', t
     .set('Accept', 'application/json')
     .expect(404)
     .then(res => {
-      t.deepEqual(res.body, { error: 'Location not found' })
+      t.deepEqual(res.body, {
+        error: 'Location not found',
+        type: 'NotFoundError'
+      })
     })
 )
