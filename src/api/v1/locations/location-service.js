@@ -1,13 +1,13 @@
-const locationService = require('../../../db/repositories/location-repository')
+const locationRepository = require('../../../db/repositories/location-repository')
 
 module.exports = {
   async create (locationIn) {
-    return locationService.create(locationIn)
+    return locationRepository.create(locationIn)
   },
   async getAll () {
-    return locationService.getAll()
+    return locationRepository.getAll()
   },
   async get (slug) {
-    return locationService.get(slug)
+    return locationRepository.get(slug)
   }
 }
