@@ -94,16 +94,7 @@ test('should get a menu from a location on a specific date', t =>
     .set('Accept', 'application/json')
     .expect(200)
     .then(res => {
-      const result = res.body.map(menu => {
-        delete menu.createdAt
-        delete menu.updatedAt
-        return menu
-      })
-
-      const expected = [ fixtures.menu() ]
-      expected[0].locationId = expected[0].location.id
-      delete expected[0].location
-
-      t.deepEqual(result, expected)
+      const expected = [ menu ]
+      t.deepEqual(res.body, expected)
     })
 )
