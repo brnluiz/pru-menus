@@ -14,7 +14,6 @@ module.exports = {
     return menuRepository.create(menuIn)
   },
   async createBulk (menusIn) {
-    return menuRepository.createBulk(menuIn)
+    return menuRepository.createBulk(menusIn)
   }
 }
-
