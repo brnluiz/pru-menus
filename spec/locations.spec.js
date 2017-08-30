@@ -15,33 +15,33 @@ test.before(async t => {
 
 test('should create a collection request for all locations', t =>
   request
-    .post('/locations/collect')
+    .post('/v1/locations/collect')
     .auth(auth.user, auth.pswd)
     .set('Accept', 'application/json')
     .expect(201)
     .then(res => {
-      t.is(res.body, {})
+      t.deepEqual(res.body, {})
     })
 )
 
 test('should execute a location collect', t =>
   request
-    .post(`/locations/${location.slug}/collect`)
+    .post(`/v1/locations/${location.slug}/collect`)
     .auth(auth.user, auth.pswd)
     .set('Accept', 'application/json')
     .expect(201)
     .then(res => {
-      t.is(res.body, {})
+      t.deepEqual(res.body, {})
     })
 )
 
 test('should fail on execute a location collect due to non-existent location', t =>
   request
-    .post(`/locations/KLAPAUCIUS/collect`)
+    .post(`/v1/locations/KLAPAUCIUS/collect`)
     .auth(auth.user, auth.pswd)
     .set('Accept', 'application/json')
     .expect(404)
     .then(res => {
-      t.is(res.body, { error: 'Location not found' })
+      t.deepEqual(res.body, { error: 'Location not found' })
     })
 )
