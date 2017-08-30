@@ -1,13 +1,15 @@
 const test = require('ava')
 
 const auth = require('../configs').tests.auth
-const locationRepository = require('../src/db/repositories/location-repository')
+const database = require('../tests/support/database')
 const fixtures = require('../tests/fixtures')
+const locationRepository = require('../src/db/repositories/location-repository')
 const request = require('../tests/support/supertest')
 
 const location = fixtures.location()
 
 test.before(async t => {
+  await database.init()
   await locationRepository.create(location)
 })
 

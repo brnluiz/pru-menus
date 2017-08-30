@@ -1,15 +1,17 @@
 const test = require('ava')
 
 const auth = require('../configs').tests.auth
+const database = require('../tests/support/database')
+const fixtures = require('../tests/fixtures')
 const locationRepository = require('../src/db/repositories/location-repository')
 const menuRepository = require('../src/db/repositories/menu-repository')
-const fixtures = require('../tests/fixtures')
 const request = require('../tests/support/supertest')
 
 const location = fixtures.location()
 const menu = fixtures.menu(location.slug)
 
 test.before(async t => {
+  await database.init()
   await locationRepository.create(location)
   await menuRepository.create(menu)
 })
