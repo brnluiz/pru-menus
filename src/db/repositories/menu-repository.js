@@ -2,15 +2,19 @@ const Menu = require('../models/menu')
 
 module.exports = {
   get (id) {
-    return Menu.findOne({ id }).lean()
+    return Menu.findById(id)
   },
   getByLocation (locationId, startDate, endDate) {
     const query = { locationId }
 
-    if (startDate) query.date['$gte'] = startDate
-    if (endDate) query.date['$lt'] = endDate
+    if (startDate || endDate) {
+      query.date = {}
 
-    return Menu.find(query).lean()
+      if (startDate) query.date['$gte'] = startDate
+      if (endDate) query.date['$lt'] = endDate
+    }
+
+    return Menu.find(query)
   },
   create (menuIn) {
     return Menu.create(menuIn)
