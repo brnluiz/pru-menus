@@ -47,32 +47,39 @@ test('should fail on get a menu from a non-existent location', t =>
 
 test('should get a specific menu', t =>
   request
-    .get(`/v1/menus/${menu.id}`)
+    .get(`/v1/menus/${menu._id}`)
     .auth(auth.user, auth.pswd)
     .set('Accept', 'application/json')
     .expect(200)
     .then(res => {
-      const result = res.body
-      delete result.createdAt
-      delete result.updatedAt
-
-      const expected = fixtures.menu()
-      expected.locationId = expected.location.id
-      delete expected.location
-
-      t.deepEqual(result, expected)
+      t.deepEqual(res.body, menu)
     })
 )
 
 test('should fail on get a non-existent menu', t =>
   request
-    .get(`/v1/menus/10`)
+    .get(`/v1/menus/41224d776a326fb40f000001`)
     .auth(auth.user, auth.pswd)
     .set('Accept', 'application/json')
     .expect(404)
     .then(res => {
-      t.deepEqual(res.body, { error: 'Menu not found',
+      t.deepEqual(res.body, {
+        error: 'Menu not found',
         type: 'NotFoundError'
+      })
+    })
+)
+
+test('should fail on get a invalid id', t =>
+  request
+    .get(`/v1/menus/invalid`)
+    .auth(auth.user, auth.pswd)
+    .set('Accept', 'application/json')
+    .expect(400)
+    .then(res => {
+      t.deepEqual(res.body, {
+        error: 'Not a valid id',
+        type: 'ValidationError'
       })
     })
 )
