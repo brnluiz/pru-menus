@@ -1,8 +1,6 @@
-const randomstring = require('randomstring')
-
 module.exports = () => ({
   name: 'UFSC Trindade',
-  slug: randomstring.generate(),
+  slug: 'ufsc-trindade',
   description: 'Choose life',
   price: 1.50
 })
