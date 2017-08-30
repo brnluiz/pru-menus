@@ -1,3 +1,4 @@
+const error = require('../../../errors')
 const locationRepository = require('../../../db/repositories/location-repository')
 const menuRepository = require('../../../db/repositories/menu-repository')
 
@@ -6,9 +7,13 @@ module.exports = {
     return menuRepository.get(id)
   },
   async getByLocation (locationSlug, startDate, endDate) {
-    const { _id } = await locationRepository.get(locationSlug)
+    const location = await locationRepository.get(locationSlug)
+    if (!location) {
+      throw new error.NotFoundError('Location not found')
+    }
 
-    return menuRepository.getByLocation(_id, startDate, endDate)
+    const menus = await menuRepository.getByLocation(location._id, startDate, endDate)
+    return menus
   },
   async create (menuIn) {
     return menuRepository.create(menuIn)
