@@ -2,7 +2,8 @@ const Location = require('../models/location')
 
 module.exports = {
   create (locationIn) {
-    return Location.insert(locationIn)
+    const location = new Location(locationIn)
+    return location.save()
   },
   getAll () {
     return Location.find()
@@ -11,4 +12,3 @@ module.exports = {
     return Location.find({ slug })
   }
 }
-
