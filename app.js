@@ -1,15 +1,20 @@
 const app = require('express')()
+const auth = require('express-basic-auth')
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 
+const configs = require('./configs')
 const log = require('./src/log')
 
 dotenv.config()
 
 // Express middleware: json request parser
 app.use(bodyParser.json())
+
+// Express middlware: auth
+app.use(auth(configs.auth))
 
 // Express routes
 require('./src/api/v1')(app)
