@@ -1,0 +1,20 @@
+dist: trusty
+sudo: required
+language: node_js
+
+services:
+  - docker
+
+before_script:
+  - docker-compose -v
+  - docker -v
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - make build
+  - make up
+
+script:
+  - make test
+
+after_script:
+  - docker-compose stop
+  - docker-compose push
