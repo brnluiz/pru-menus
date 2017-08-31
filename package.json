@@ -1,5 +1,5 @@
 {
-  "name": "pru-menu",
+  "name": "pru-menus",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -16,7 +16,7 @@
   "apidoc": {
     "title": "pRU Menu REST API Documentation",
     "name": "pRU Menu REST API Documentation",
-    "url": "https://pru-menu-brunoluiz.herokuapp.com/v1"
+    "url": "https://pru-menus-brunoluiz.herokuapp.com/v1"
   },
   "ava": {
     "failFast": true,
