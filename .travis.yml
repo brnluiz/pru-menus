@@ -8,7 +8,6 @@ services:
 before_script:
   - docker-compose -v
   - docker -v
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - make build
   - make up
 
@@ -16,5 +15,6 @@ script:
   - make test
 
 after_script:
-  - docker-compose stop
-  - docker-compose push
+  - docker login -u _ -p $HEROKU_TOKEN registry.heroku.com
+  - docker tag brunoluiz/pru-menus registry.heroku.com/pru-menus/web
+  - docker push registry.heroku.com/pru-menus/web
