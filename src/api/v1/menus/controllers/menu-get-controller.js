@@ -1,3 +1,4 @@
+const error = require('../../../../errors')
 const menuService = require('../menu-service')
 
 module.exports = async (req, res, next) => {
@@ -9,6 +10,9 @@ module.exports = async (req, res, next) => {
     res.status(200).send(menu)
     next()
   } catch (err) {
-    next(err)
+    if (err instanceof error.NotFoundError) return next(err)
+    else if (err instanceof error.ValidationError) return next(err)
+
+    return next(new error.InternalServerError(err.message, err))
   }
 }
