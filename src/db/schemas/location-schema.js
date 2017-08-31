@@ -27,5 +27,3 @@ module.exports = Joi.object().keys({
     "price": 1.50
   }
  */
-
-
