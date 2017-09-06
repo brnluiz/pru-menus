@@ -10,7 +10,7 @@ services:
       context: .
     volumes:
       - .:/opt/app
-      - /opt/app/node_modules
+      - dummy:/opt/app/node_modules
     ports:
       - 8080:80
       - 9229:9229
@@ -23,3 +23,6 @@ services:
     # Port not exposed due to CircleCI
     # ports:
       # - '27017:27016'
+
+volumes:
+  dummy:
