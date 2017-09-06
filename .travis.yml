@@ -14,19 +14,14 @@ before_script:
 script:
   - make test
 
-after_script:
+after_success:
   # Publish on Heroku
-  - test $HEROKU_TOKEN \
-    && echo 'Deploying on Heroku' \
-    && docker login -u _ -p $HEROKU_TOKEN registry.heroku.com \
-    && docker tag $HEROKU_TAG $HEROKU_REGISTRY \
-    && docker push $HEROKU_REGISTRY \
-    || echo 'Heroku token not defined'
+  - echo 'Deploying on Heroku'
+  - docker login -u _ -p $HEROKU_TOKEN registry.heroku.com
+  - docker tag $HEROKU_TAG $HEROKU_REGISTRY
+  - docker push $HEROKU_REGISTRY
 
   # Publish on Docker HUB
-  - test $DOCKER_USER \
-    && test $DOCKER_PSWD \
-    && echo 'Pushing to Docker HUB' \
-    && docker login -u $DOCKER_USER -p $DOCKER_PSWD \
-    && docker-compose push \
-    || echo 'Docker user or password not defined'
+  - echo 'Pushing to Docker HUB'
+  - docker login -u $DOCKER_USER -p $DOCKER_PSWD
+  - docker-compose push
