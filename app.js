@@ -18,7 +18,7 @@ app.use(bodyParser.json())
 app.use(auth(configs.auth))
 
 // Express routes
-require('./src/api/v1')(app)
+require('./src/routes/v1')(app)
 
 // Express middleware: celebrate error handler
 app.use(celebrate.errors())
