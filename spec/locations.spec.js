@@ -3,15 +3,37 @@ const test = require('ava')
 const auth = require('../configs').tests.auth
 const database = require('../tests/support/database')
 const fixtures = require('../tests/fixtures')
-const locationRepository = require('../src/db/repositories/location-repository')
 const request = require('../tests/support/supertest')
 
 const location = fixtures.location()
 
 test.before(async t => {
   await database.init()
-  await locationRepository.create(location)
 })
+
+test('should create a location', t =>
+  request
+    .post('/v1/locations')
+    .auth(auth.user, auth.pswd)
+    .set('Accept', 'application/json')
+    .send(location)
+    .expect(201)
+    .then(res => {
+      t.deepEqual(res.body, {})
+    })
+)
+
+test('should fail on create location', t =>
+  request
+    .post('/v1/locations')
+    .auth(auth.user, auth.pswd)
+    .set('Accept', 'application/json')
+    .send({})
+    .expect(400)
+    .then(res => {
+      t.deepEqual(res.body.message, 'child "name" fails because ["name" is required]')
+    })
+)
 
 test('should create a collection request for all locations', t =>
   request
