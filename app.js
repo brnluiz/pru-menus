@@ -1,6 +1,7 @@
 const app = require('express')()
 const auth = require('express-basic-auth')
 const bodyParser = require('body-parser')
+const celebrate = require('celebrate')
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
@@ -18,6 +19,9 @@ app.use(auth(configs.auth))
 
 // Express routes
 require('./src/api/v1')(app)
+
+// Express middleware: celebrate error handler
+app.use(celebrate.errors())
 
 // Express middleware: error handler
 app.use((error, req, res, next) => {
