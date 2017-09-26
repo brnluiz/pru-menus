@@ -19,8 +19,8 @@ module.exports = async (req, res, next) => {
     const worker = await require(workerPath(location.slug))
     await worker.run(location)
   } catch (err) {
-    const error = `Error on ${location.slug} worker`
-    return next(new error.InternalServerError(error, err))
+    const msg = `Error on ${location.slug} worker`
+    return next(new error.InternalServerError(msg, err))
   }
 
   res.sendStatus(201)
