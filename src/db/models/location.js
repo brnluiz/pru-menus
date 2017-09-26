@@ -1,8 +1,16 @@
 const joi = require('../schemas/location-schema')
-const { schema, mongoose } = require('./_mongo')(joi)
+const mongoose = require('mongoose')
+mongoose.Promise = global.Promise
 
 // Set indexes
-schema.slug.unique = true
+const schema = new mongoose.Schema({
+  name: { type: String, required: true },
+  slug: { type: String, required: true, unique: true },
+  price: { type: Number },
+  description: { type: String },
+  updatedAt: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: Date.now }
+})
 
 const Location = mongoose.model('Location', schema)
 Location.joi = joi
