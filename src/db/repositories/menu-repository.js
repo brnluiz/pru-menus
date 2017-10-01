@@ -7,11 +7,10 @@ module.exports = {
   getByLocation (locationId, startDate, endDate) {
     const query = { locationId }
 
-    if (startDate || endDate) {
-      query.date = {}
-
-      if (startDate) query.date['$gte'] = startDate
-      if (endDate) query.date['$lt'] = endDate
+    if (startDate && endDate) {
+      query.date = { $gte: startDate, $lt: endDate }
+    } else if (startDate) {
+      query.date = startDate
     }
 
     return Menu.find(query)
