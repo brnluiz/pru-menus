@@ -8,7 +8,7 @@ module.exports = {
     const query = { locationId }
 
     if (startDate && endDate) {
-      query.date = { $gte: startDate, $lt: endDate }
+      query.date = { $gte: startDate, $lte: endDate }
     } else if (startDate) {
       query.date = startDate
     }
