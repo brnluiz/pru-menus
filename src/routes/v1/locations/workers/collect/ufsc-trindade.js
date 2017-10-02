@@ -12,13 +12,7 @@ const worker = async (location) => {
   // Loads the HTML to the Cherrio lib
   const $ = cheerio.load(response.data)
 
-  // First things first: define the start and end date of this menu
-  const dateEl = $('p > span:first-child').text() // It is mutable :\
-  const dateRange = dateEl.match(/([0-9]*)\/([0-9]*)/g)
-  const startDateStr = dateRange[0]
-
-  // Get the start date Date object
-  const startDate = moment(startDateStr, 'DD/MM')
+  const startDate = moment().startOf('isoweek')
 
   // Get the menu's table and iterate over it
   const rows = $($('table > tbody')[0]).find('tr').toArray()
