@@ -4,8 +4,8 @@ const getController = require('./controllers/menu-get-controller')
 const getByLocationController = require('./controllers/menu-get-by-location-controller')
 
 /**
- * @api {post} /menus Get menu (by id)
- * @apiGroup Menu
+ * @api {post} /menus/:menuId Get menu (by id)
+ * @apiGroup Menus
  * @apiVersion 1.0.0
  *
  * @apiSuccess Success Returns menu
@@ -18,7 +18,7 @@ router.get('/menus/:menuId',
 
 /**
  * @api {post} /locations/:locationSlug/menus Get menu (by location)
- * @apiGroup Menu
+ * @apiGroup Menus
  * @apiVersion 1.0.0
  *
  * @apiSuccess Success Returns menus
