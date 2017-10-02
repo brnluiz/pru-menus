@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  web:
+  app:
     image: brunoluiz/pru-menus
     env_file: .env.development
     build:
