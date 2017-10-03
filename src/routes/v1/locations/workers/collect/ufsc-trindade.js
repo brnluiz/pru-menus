@@ -2,7 +2,7 @@ const cheerio = require('cheerio')
 const request = require('axios')
 const moment = require('moment')
 
-const menuService = require('../../../menus/menu-service')
+const menuService = require('../../../../../services/menu-service')
 
 const worker = async (location) => {
   if (!location.id) throw new Error('Location id is not defined')

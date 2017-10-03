@@ -1,6 +1,6 @@
 const error = require('../../../../errors')
 const eventService = require('../../../../event-service')
-const locationService = require('../location-service')
+const locationService = require('../../../../services/location-service')
 
 module.exports = async (req, res, next) => {
   try {

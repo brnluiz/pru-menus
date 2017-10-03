@@ -1,5 +1,5 @@
 const error = require('../../../../errors')
-const menuService = require('../menu-service')
+const menuService = require('../../../../services/menu-service')
 
 module.exports = async (req, res, next) => {
   try {

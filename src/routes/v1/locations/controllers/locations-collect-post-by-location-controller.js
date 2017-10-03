@@ -1,5 +1,5 @@
 const error = require('../../../../errors')
-const locationService = require('../location-service')
+const locationService = require('../../../../services/location-service')
 
 const workerPath = (id) => `../workers/collect/${id}`
 

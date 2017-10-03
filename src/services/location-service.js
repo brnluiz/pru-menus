@@ -1,5 +1,5 @@
-const error = require('../../../errors')
-const locationRepository = require('../../../db/repositories/location-repository')
+const error = require('../errors')
+const locationRepository = require('../db/repositories/location-repository')
 
 module.exports = {
   create (locationIn) {

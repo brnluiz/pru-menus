@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
-const error = require('../../../errors')
-const locationRepository = require('../../../db/repositories/location-repository')
-const menuRepository = require('../../../db/repositories/menu-repository')
+const error = require('../errors')
+const locationRepository = require('../db/repositories/location-repository')
+const menuRepository = require('../db/repositories/menu-repository')
 
 module.exports = {
   async get (id) {
