@@ -1,6 +1,9 @@
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
+const mongooseToJson = require('@meanie/mongoose-to-json')
+
 mongoose.Promise = global.Promise
+mongoose.plugin(mongooseToJson)
 
 dotenv.config()
 

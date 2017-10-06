@@ -1,14 +1,18 @@
 const Location = require('../models/location')
 
 module.exports = {
-  create (locationIn) {
-    const location = new Location(locationIn)
-    return location.save()
+  async create (locationIn) {
+    const location = await Location.create(locationIn)
+
+    const res = await Location.findById(location._id).exec()
+    return res.toJSON()
   },
-  getAll () {
-    return Location.find()
+  async getAll () {
+    const res = await Location.find().exec()
+    return res ? res.map(item => item.toJSON()) : []
   },
-  get (slug) {
-    return Location.findOne({ slug })
+  async get (slug) {
+    const res = await Location.findOne({ slug }).exec()
+    return res ? res.toJSON() : null
   }
 }

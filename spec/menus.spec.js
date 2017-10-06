@@ -3,20 +3,21 @@ const test = require('ava')
 const auth = require('../configs').tests.auth
 const database = require('../tests/support/database')
 const fixtures = require('../tests/fixtures')
-const locationRepository = require('../src/db/repositories/location-repository')
-const menuRepository = require('../src/db/repositories/menu-repository')
+const locationService = require('../src/services/location-service')
+const menuService = require('../src/services/menu-service')
 const request = require('../tests/support/supertest')
 
-let location
-let menu
+let location = null
+let menu = null
 test.before(async t => {
   await database.init()
   const locationIn = fixtures.location()
-  location = await locationRepository.create(locationIn)
+  location = await locationService.create(locationIn)
+  location = JSON.parse(JSON.stringify(location))
 
-  const menuIn = fixtures.menu(location._id)
-  menu = await menuRepository.create(menuIn)
-  menu = JSON.parse(JSON.stringify(menu)) // FIXME: Menu.create returns mongoose model
+  const menuIn = fixtures.menu(location.id)
+  menu = await menuService.create(menuIn)
+  menu = JSON.parse(JSON.stringify(menu))
 })
 
 test('should get a menu from a location', t =>
@@ -47,7 +48,7 @@ test('should fail on get a menu from a non-existent location', t =>
 
 test('should get a specific menu', t =>
   request
-    .get(`/v1/menus/${menu._id}`)
+    .get(`/v1/menus/${menu.id}`)
     .auth(auth.user, auth.pswd)
     .set('Accept', 'application/json')
     .expect(200)

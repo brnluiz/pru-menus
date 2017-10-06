@@ -4,7 +4,10 @@ const bodyParser = require('body-parser')
 const celebrate = require('celebrate')
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
+const mongooseToJson = require('@meanie/mongoose-to-json')
+
 mongoose.Promise = global.Promise
+mongoose.plugin(mongooseToJson)
 
 const configs = require('./configs')
 const log = require('./src/log')

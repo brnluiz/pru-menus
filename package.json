@@ -33,6 +33,7 @@
   "author": "Bruno Luiz da Silva",
   "license": "ISC",
   "dependencies": {
+    "@meanie/mongoose-to-json": "^2.0.2",
     "apidoc": "^0.17.6",
     "ava": "^0.21.0",
     "axios": "^0.16.2",

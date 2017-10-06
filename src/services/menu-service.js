@@ -22,7 +22,7 @@ module.exports = {
       throw new error.NotFoundError('Location not found')
     }
 
-    const menus = await menuRepository.getByLocation(location._id, startDate, endDate)
+    const menus = await menuRepository.getByLocation(location.id, startDate, endDate)
     if (!menus.length) {
       throw new error.NotFoundError('Menus not found')
     }
